@@ -6,12 +6,14 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ArticleModule } from './modules/article/article.module';
 import { CategoryModule } from './modules/category/category.module';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 import { getProjectConfig } from './utils';
 import { MenuModule } from './modules/menu/menu.module';
 import { TagModule } from './modules/tag/tag.module';
 import { ParagraphModule } from './modules/paragraph/paragraph.module';
 import { UploadModule } from './modules/upload/upload.module';
+import { ChangelogModule } from './modules/changelog/changelog.module';
 
 const env = 'dev';
 
@@ -32,6 +34,7 @@ const dbConfig: TypeOrmModuleOptions = {
 };
 
 // console.log(dbConfig);
+// console.log(__dirname);
 
 @Module({
   imports: [
@@ -44,6 +47,10 @@ const dbConfig: TypeOrmModuleOptions = {
     TagModule,
     ParagraphModule,
     UploadModule,
+    ChangelogModule,
+    ServeStaticModule.forRoot({
+      rootPath: path.join(__dirname, 'uploads'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
