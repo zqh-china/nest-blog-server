@@ -11,8 +11,27 @@ export class ArticleService {
     @InjectRepository(TabArticle)
     private readonly aritcleRepository: Repository<TabArticle>,
   ) {}
-  findAll(): Promise<TabArticle[]> {
-    return this.aritcleRepository.find();
+  async findAll(publish_status, page, size) {
+    let sqlStr = `SELECT * FROM tab_article`;
+    const limit = size;
+    const offset = (page - 1) * limit;
+    if (publish_status !== 'all_') {
+      sqlStr += ` WHERE publish_status='${publish_status}'`;
+    }
+    sqlStr += ` ORDER BY create_time DESC LIMIT ${offset}, ${limit}`;
+    try {
+      const data = await this.aritcleRepository.query(sqlStr);
+      const total = await this.aritcleRepository.count({where: { publish_status }});
+      return {
+        data,
+        total,
+      }
+    } catch (err) {
+      return {
+        errmsg: err,
+      }
+    }
+    
   }
   findOne(id: number): Promise<TabArticle> {
     return this.aritcleRepository.findOneBy({ id });

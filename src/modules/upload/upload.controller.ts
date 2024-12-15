@@ -29,7 +29,7 @@ export class UploadController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './uploads', // 文件存储的目标文件夹，可根据实际情况修改
+        destination: '../uploads', // 文件存储的目标文件夹，可根据实际情况修改
         filename: (req, file, cb) => {
           const uniqueSuffix = uuidv4();
           const fileExtension = path.extname(file.originalname);

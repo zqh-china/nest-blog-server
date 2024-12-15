@@ -53,7 +53,7 @@ export class TabArticle {
   category_id: number;
 
   @Column({ name: 'tags', type: 'varchar', length: 50, nullable: true })
-  tag_id: string;
+  tags: string;
 
   @Column({ name: 'desc', type: 'text', nullable: true })
   desc: string | null;
