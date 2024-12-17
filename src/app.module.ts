@@ -15,7 +15,7 @@ import { ParagraphModule } from './modules/paragraph/paragraph.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { ChangelogModule } from './modules/changelog/changelog.module';
 
-const env = 'prod';
+const env = 'dev';
 
 const username = getProjectConfig('username', env);
 const password = getProjectConfig('password', env);

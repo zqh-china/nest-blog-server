@@ -12,16 +12,19 @@ export class ArticleService {
     private readonly aritcleRepository: Repository<TabArticle>,
   ) {}
   async findAll(publish_status, page, size) {
-    let sqlStr = `SELECT * FROM tab_article`;
+    let sqlStr = 'SELECT * FROM tab_article';
     const limit = size;
     const offset = (page - 1) * limit;
+    let total = 0;
     if (publish_status !== 'all_') {
       sqlStr += ` WHERE publish_status='${publish_status}'`;
+      total = await this.aritcleRepository.count({ where: { publish_status } });
+    } else {
+      total = await this.aritcleRepository.count();
     }
     sqlStr += ` ORDER BY create_time DESC LIMIT ${offset}, ${limit}`;
     try {
       const data = await this.aritcleRepository.query(sqlStr);
-      const total = await this.aritcleRepository.count({where: { publish_status }});
       return {
         data,
         total,
