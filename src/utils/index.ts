@@ -32,6 +32,7 @@ export function wrapperResponse(p: Promise<any>, message: string) {
     .catch((error) => failure(error.message));
 }
 
+
 export function updateObj(obj1, obj2) {
   for (const key in obj1) {
     if (obj1.hasOwnProperty(key)) {

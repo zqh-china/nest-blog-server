@@ -13,7 +13,7 @@ export class TabCategory {
 
   // description字段，可空，对应数据库中的varchar类型
   @Column({ type: 'varchar', length: 255, nullable: true, name: 'desc' })
-  description: string | null;
+  desc: string | null;
 
   @Column({ type: 'varchar', length: 20, nullable: true, name: 'color' })
   color: string;

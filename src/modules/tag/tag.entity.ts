@@ -18,7 +18,7 @@ export class TabTag extends BaseEntity {
     nullable: true,
     default: '',
   })
-  description: string;
-  @Column({ type: 'varchar', length: 25, name: 'antd_color' })
+  desc: string;
+  @Column({ type: 'varchar', length: 25, name: 'color' })
   color: string;
 }

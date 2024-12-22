@@ -38,4 +38,7 @@ export class TabUser {
 
   @Column({ type: 'varchar', name: 'nickname', length: 100, nullable: false })
   nickname: string;
+
+  @Column({ name: 'avatar', type: 'varchar', length: 50 })
+  avatar: string;
 }

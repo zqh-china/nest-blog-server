@@ -6,6 +6,9 @@ import {
   HttpException,
   HttpStatus,
   Get,
+  Delete,
+  Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -64,7 +67,6 @@ export class UploadController {
         message: '文件上传成功',
         fileName: file.filename,
       };
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       // 如果保存到数据库出现错误，抛出相应异常告知客户端
       throw new HttpException(
@@ -77,5 +79,9 @@ export class UploadController {
   @Get('')
   getImages() {
     return wrapperResponse(this.uploadService.findAll(), '获取图片成功！');
+  }
+  @Delete(':id')
+  delImage(@Param('id', ParseIntPipe) id: number) {
+    return wrapperResponse(this.uploadService.delImage(id), '删除图片成功！'); 
   }
 }

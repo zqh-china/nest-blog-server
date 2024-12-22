@@ -12,7 +12,7 @@ export class UserService {
   ) {}
 
   findOne(id: number): Promise<TabUser> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOneBy({ id })
   }
 
   findAll(): Promise<TabUser[]> {

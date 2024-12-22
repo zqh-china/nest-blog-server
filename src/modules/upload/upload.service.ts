@@ -12,4 +12,8 @@ export class UploadService {
   findAll(): Promise<TabUpload[]> {
     return this.uploadRepository.find();
   }
+
+  delImage(id: number) {
+    return this.uploadRepository.delete({id});
+  }
 }

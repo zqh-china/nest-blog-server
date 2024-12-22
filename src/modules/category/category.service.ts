@@ -18,27 +18,19 @@ export class CategoryService {
     return this.cateRepository.findOneBy({ id });
   }
   create(createCateDto: CreateCateDto): Promise<TabCategory> {
-    const cate = new TabCategory();
-    updateObj(createCateDto, cate);
-    return this.cateRepository.save(cate);
+    return this.cateRepository.save(createCateDto)
+    .catch((error) => {
+      return Promise.reject(error);
+    });
   }
   update(updateCateDto: UpdateCateDto) {
-    return this.cateRepository
-      .findOneBy({ id: updateCateDto.id })
-      .then((cate) => {
-        updateObj(updateCateDto, cate);
-        return this.cateRepository.update(cate.id, cate);
-      })
-      .catch((error) => {
-        return Promise.reject(error);
-      });
+    return this.cateRepository.update(updateCateDto.id, updateCateDto)      
+    .catch((error) => {
+      return Promise.reject(error);
+    });
   }
   delete(id: number) {
-    return this.cateRepository
-      .findOneBy({ id })
-      .then((cate) => {
-        return this.cateRepository.delete({ id: cate.id });
-      })
+    return this.cateRepository.delete({ id })
       .catch((error) => {
         return Promise.reject(error);
       });

@@ -17,7 +17,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get('info')
   getUserByToken(@Req() request) {
-    // console.log('user.controller user', request.user);
     return wrapperResponse(
       this.userService.findOne(request.user.userid),
       '请求用户信息成功！',

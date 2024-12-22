@@ -4,8 +4,8 @@ import {
   Column,
 } from 'typeorm';
 
-@Entity('tab_article')
-export class TabArticle {
+@Entity('tab_post')
+export class TabPost {
   @PrimaryGeneratedColumn()
   id: number;
   @Column({ type: 'varchar', length: 255, nullable: false })
@@ -30,7 +30,6 @@ export class TabArticle {
 
   @Column({ name: 'desc', type: 'text', nullable: true })
   desc: string | null;
-
   @Column({ name: 'content', type: 'text' })
   content: string;
 }

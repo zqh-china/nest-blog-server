@@ -12,7 +12,7 @@ export class ArticleService {
     private readonly aritcleRepository: Repository<TabArticle>,
   ) {}
   async findAll(publish_status, page, size) {
-    let sqlStr = 'SELECT * FROM tab_article';
+    let sqlStr = 'SELECT id, title, tags, category_id, `desc`, author_id, create_time, update_time, publish_status FROM tab_article';
     const limit = size;
     const offset = (page - 1) * limit;
     let total = 0;

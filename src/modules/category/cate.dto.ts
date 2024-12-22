@@ -1,10 +1,10 @@
 export class CreateCateDto {
   name: string;
-  description?: string;
+  desc?: string;
 }
 
 export class UpdateCateDto {
   id: number;
   name: string;
-  description: string;
+  desc: string;
 }
